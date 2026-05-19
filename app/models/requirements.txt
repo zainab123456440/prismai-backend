@@ -1,0 +1,37 @@
+# Server
+fastapi
+uvicorn[standard]
+
+# Environment
+python-dotenv
+pydantic-settings
+
+# File handling
+pymupdf
+python-docx
+pandas
+openpyxl
+
+# AI / Embeddings
+openai
+langchain
+langchain-community
+langchain-openai
+tiktoken
+
+# Vector DB
+qdrant-client
+
+# Database
+supabase
+
+# Background jobs
+celery
+redis
+
+# Auth
+python-jose[cryptography]
+passlib[bcrypt]
+
+# File upload support
+python-multipart
