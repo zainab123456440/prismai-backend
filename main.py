@@ -24,12 +24,21 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     try:
         logger.info("🚀 PrismAI starting up...")
-        ensure_collection()
+        
+        # Run with timeout so it doesn't hang forever
+        import asyncio
+        await asyncio.wait_for(
+            asyncio.to_thread(ensure_collection),
+            timeout=10.0  # fail after 10 seconds, don't hang
+        )
         logger.info("✅ Qdrant collection ready")
+
+    except asyncio.TimeoutError:
+        logger.error("❌ Qdrant connection timed out — check QDRANT_URL and QDRANT_API_KEY")
+        # Don't raise — let app start anyway so you can see the error
     except Exception as e:
         logger.error(f"❌ Startup error: {e}")
-        # ❌ Remove the 'raise' — let the app start anyway
-        # raise   <-- comment this out temporarily
+        # Don't raise — let app start anyway
 
     yield
     logger.info("🛑 PrismAI shutting down...")

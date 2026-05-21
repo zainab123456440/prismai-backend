@@ -1,8 +1,6 @@
 from app.core.loader import load_to_markdown, get_file_type
 from app.core.splitter import split_markdown
 from app.core.embedder import embed_chunks
-from app.core.suggester import generate_suggested_questions
-from app.core.summarizer import generate_summary
 from app.db.qdrant import ensure_collection, store_chunks
 from app.db.supabase import (
     update_document_status,
@@ -119,31 +117,13 @@ def ingest_document(
         # ─────────────────────────────
         # Step 6 — Generate summary
         # ─────────────────────────────
-        logger.info(f"[{filename}] Step 6 — Generating summary...")
-        summary = generate_summary(
-            text=markdown_text,
-            filename=filename,
-        )
+       
 
-        save_document_summary(
-            document_id=document_id,
-            summary=summary,
-        )
-
+        
         # ─────────────────────────────
-        # Step 7 — Generate suggested questions
-        # ─────────────────────────────
-        logger.info(f"[{filename}] Step 7 — Generating suggested questions...")
-        questions = generate_suggested_questions(
-            text=markdown_text,
-            filename=filename,
-        )
+        #
 
-        save_suggested_questions(
-            document_id=document_id,
-            questions=questions,
-        )
-
+        
         # ─────────────────────────────
         # Step 8 — Mark as ready
         # ─────────────────────────────
