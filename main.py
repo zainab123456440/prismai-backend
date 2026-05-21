@@ -20,28 +20,19 @@ logger = logging.getLogger(__name__)
 # --- Startup / Shutdown Events ---
 
 @asynccontextmanager
+@asynccontextmanager
 async def lifespan(app: FastAPI):
-
     try:
         logger.info("🚀 PrismAI starting up...")
-        logger.info(f"Environment: {settings.environment}")
-        logger.info(f"LLM Provider: {settings.llm_provider}")
-
         ensure_collection()
         logger.info("✅ Qdrant collection ready")
-
-        logger.info("✅ PrismAI initialized successfully")
-
     except Exception as e:
         logger.error(f"❌ Startup error: {e}")
-        raise
+        # ❌ Remove the 'raise' — let the app start anyway
+        # raise   <-- comment this out temporarily
 
     yield
-
     logger.info("🛑 PrismAI shutting down...")
-    logger.info("✅ Cleanup complete")
-
-
 # --- FastAPI App ---
 
 app = FastAPI(
