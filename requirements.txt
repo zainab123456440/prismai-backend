@@ -144,7 +144,7 @@ rich==14.3.4
 rsa==4.9.1
 safetensors==0.7.0
 scipy==1.13.1
-scikit-learn==1.5.2
+scikit-learn==1.6.1
 sentence-transformers==5.4.1
 shellingham==1.5.4
 six==1.17.0
