@@ -20,7 +20,6 @@ logger = logging.getLogger(__name__)
 # --- Startup / Shutdown Events ---
 
 @asynccontextmanager
-@asynccontextmanager
 async def lifespan(app: FastAPI):
     try:
         logger.info("🚀 PrismAI starting up...")
