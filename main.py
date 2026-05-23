@@ -56,8 +56,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://prismai-frontend-gs81.vercel.app",
-        "http://localhost:3000",
+        "https://prismai-frontend-gs81.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
